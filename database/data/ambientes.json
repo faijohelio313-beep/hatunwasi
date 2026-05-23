@@ -1,0 +1,1513 @@
+[
+    {
+        "id": 1,
+        "nombre_ambiente": "Ambiente 01",
+        "nombre_serie": "Serie Zen Geométrica",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Cerámico Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Círculos concéntricos en relieve",
+                "formato": "30 x 60 cm",
+                "codigo": "LLG 36090 B"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Porcelanato",
+                "formato": "60 x 60 cm",
+                "codigo": "LFG 66018"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Inserto",
+                "marca": null,
+                "diseño": "Temática Zen (piedras y toallas)",
+                "formato": "15 x 60 cm",
+                "codigo": null
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Terminación metálica dorada/bronce",
+                "formato": "2 x 60 cm",
+                "codigo": "G 2 E"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Inodoro",
+                "marca": "Frencia",
+                "diseño": null,
+                "formato": null,
+                "codigo": null,
+                "color": "Boné (crema)"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Urinario",
+                "marca": "Hispánica",
+                "diseño": null,
+                "formato": null,
+                "codigo": null,
+                "color": "Boné"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "nombre_ambiente": "Ambiente 02",
+        "nombre_serie": "Serie Mármol Fusión Gold",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Importado",
+                "marca": null,
+                "diseño": "Tipo mármol Calacatta con vetas dramáticas en gris y dorado",
+                "formato": "60 x 60 cm",
+                "modelo": "Porcelanato Fusión Gold"
+            },
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Cerámico Amaderado",
+                "marca": "San Lorenzo",
+                "diseño": "Textura de madera natural",
+                "formato": "20 x 61 cm",
+                "modelo": "Paquetón Premium Honey"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Listelo decorativo en relieve dorado",
+                "formato": "4 x 60 cm",
+                "modelo": "Sigzag Dorado"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Juego de Baño",
+                "marca": "Frencia",
+                "diseño": "One Piece con lavatorio de pedestal",
+                "formato": null,
+                "color": "Boné (tono crema)"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "nombre_ambiente": "Ambiente 03",
+        "nombre_serie": "Serie Onda Geométrica Dorada",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Cerámico Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Patrón geométrico 3D (onda gris) con relieves dorados",
+                "formato": "30 x 60 cm",
+                "codigo": "LLG Onda Gris (con inserto de 20x60)"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Mármol gris claro",
+                "formato": "60 x 60 cm",
+                "codigo": "LFG 66018"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Listelo metálico dorado en relieve",
+                "formato": "2 x 60 cm",
+                "codigo": "G 2 E"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Juego de Baño",
+                "marca": "Frencia",
+                "diseño": "One Piece",
+                "formato": null,
+                "color": "Boné (crema)"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "nombre_ambiente": "Ambiente 04",
+        "nombre_serie": "Serie Círculos Navidad Fusión",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Cerámico Importado",
+                "marca": null,
+                "diseño": "Círculos concéntricos con relieve y detalles dorados (patrón 'bola Navidad')",
+                "formato": "60 x 60 cm"
+            },
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Panel Amaderado Izquierda",
+                "marca": null,
+                "diseño": "Panel amaderado claro",
+                "formato": null
+            },
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Panel Amaderado Derecha",
+                "marca": null,
+                "diseño": "Panel amaderado oscuro",
+                "formato": null
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Mármol gris claro",
+                "formato": "60 x 60 cm",
+                "codigo": "LFG 66018"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Listelo metálico dorado en relieve",
+                "formato": "2 x 60 cm",
+                "codigo": "G 2 E"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Juego de Baño",
+                "marca": "Frencia",
+                "diseño": "One Piece",
+                "formato": null,
+                "color": "Boné (crema)"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "nombre_ambiente": "Ambiente 05",
+        "nombre_serie": "Serie Luxury Black & Gold (Chispeado)",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Vitrificado Tallado",
+                "marca": null,
+                "diseño": "Efecto Escarchado (Pared Blanca: Chispeado Blanco Beach, Pared Negra: Chispeado Negro)",
+                "formato": "60 x 60 cm",
+                "codigo": "AG 6001 / AG 6002"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Vitrificado",
+                "marca": null,
+                "diseño": "Chispeado Negro mate/brillante",
+                "formato": "60 x 60 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Listelo metálico dorado en relieve que divide las piezas",
+                "formato": "2 x 60 cm",
+                "codigo": "G 2 E Golden"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Inodoro",
+                "marca": "Importado",
+                "diseño": "One Piece Negro con línea dorada, aerodinámico vitrificado",
+                "formato": null,
+                "codigo": "2070 VG"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "nombre_ambiente": "Ambiente 06",
+        "nombre_serie": "Mármol Esmeralda Dorado & Zafiro",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Importado",
+                "marca": null,
+                "diseño": "Mármol blanco con vetas de gran formato en tonos dorado, ocre y azul profundo",
+                "formato": "60 x 60 cm",
+                "codigo": "JS 66J63 (Esmeralda Dorado)"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Mármol gris claro con veta suave (Mate/Satinado)",
+                "formato": "60 x 60 cm",
+                "codigo": "LFG 66001"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Listelo metálico dorado en relieve",
+                "formato": "2 x 60 cm",
+                "codigo": "G 2 Golden"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Juego de Baño",
+                "marca": "Trébol",
+                "diseño": "Taza y tanque con manilla (Pedestal)",
+                "formato": null,
+                "color": "Blanco brillante"
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "nombre_ambiente": "Ambiente 07",
+        "nombre_serie": "Serie Carrara & Trama Galaxia Negro",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Carrara Blanco (Vetas grises suaves) Fondo Izquierdo",
+                "formato": "60 x 60 cm",
+                "codigo": "WP 66061"
+            },
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Importado",
+                "marca": "Línea Typhoon",
+                "diseño": "Trama Galaxia Negro (Relieve ondulado) Fondo Derecho",
+                "formato": "60 x 60 cm"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Vitrificado Importado",
+                "marca": null,
+                "diseño": "Negro Absoluto (Efecto espejo)",
+                "formato": "60 x 60 cm",
+                "codigo": "MBXD 600"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Listelo metálico plateado en relieve (Sigzag Plateado)",
+                "formato": "4 x 60 cm"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Juego de Baño",
+                "marca": "Vainsa / Twyford",
+                "diseño": "One Piece Blanco de alta gama",
+                "formato": null,
+                "color": "Blanco brillante"
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "nombre_ambiente": "Ambiente 08",
+        "nombre_serie": "Serie Murete Aston & Porcelanato Negro",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Importado",
+                "marca": "Línea Typhoon",
+                "diseño": "Murete Aston (Textura de piedra apilada)",
+                "formato": "60 x 60 cm"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Negro Mate",
+                "formato": "60 x 60 cm",
+                "codigo": "LFG 66098"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Inserto",
+                "marca": "Importado",
+                "diseño": "Inserto decorativo",
+                "formato": "30 x 60 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Lápiz Silver Plateado",
+                "formato": "2 x 60 cm",
+                "modelo": "Silver Plateado"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Juego de Baño",
+                "marca": "Importado (Línea W.T.)",
+                "diseño": "One Piece",
+                "formato": null,
+                "codigo": "2064"
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "nombre_ambiente": "Ambiente 09",
+        "nombre_serie": "Serie Floralia Gold & Carrara Fusión",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Importado",
+                "marca": null,
+                "diseño": "Patrón floral negro con detalles en oro (Floralia) - Panel Central",
+                "formato": "60 x 120 cm"
+            },
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Carrara Blanco (Vetas grises) y Gris Calacatta - Paredes Laterales",
+                "formato": "60 x 60 cm"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Mármol gris veteado",
+                "formato": "60 x 60 cm",
+                "codigo": "LFG 66018"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Listelo metálico dorado en relieve (G 2 E Golden)",
+                "formato": "2 x 60 cm"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Inodoro",
+                "marca": "Frencia",
+                "diseño": "One Piece",
+                "formato": null,
+                "color": "Blanco"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Lavatorio",
+                "marca": null,
+                "diseño": "Bowl sobre encimera en mueble minimalista negro",
+                "formato": null
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "nombre_ambiente": "Ambiente 10",
+        "nombre_serie": "Serie Botánica & Ébano Vitrificado",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Importado",
+                "marca": null,
+                "diseño": "Estampado botánico (hojas verdes tropicales sobre fondo blanco) - Panel Decorativo Fondo",
+                "formato": "60 x 60 cm"
+            },
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Vitrificado",
+                "marca": null,
+                "diseño": "Chispeado Negro - Pared Lateral",
+                "formato": "60 x 60 cm",
+                "codigo": "AG 6002"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Vitrificado Importado",
+                "marca": null,
+                "diseño": "Negro Absoluto (Efecto espejo)",
+                "formato": "60 x 60 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Listelo metálico dorado en relieve",
+                "formato": "2 x 60 cm",
+                "codigo": "G 2 Golden"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Inodoro",
+                "marca": "Importado",
+                "diseño": "One Piece Negro con línea dorada, descarga de alta eficiencia",
+                "formato": null,
+                "codigo": "2070 VG"
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "nombre_ambiente": "Ambiente 11",
+        "nombre_serie": "Serie Carrara Blanco & Inserto Plumas",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Carrara Blanco (Vetas grises) - Pared Principal",
+                "formato": "60 x 60 cm",
+                "codigo": "WP 66061"
+            },
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Inserto Importado",
+                "marca": null,
+                "diseño": "Inserto Plumas (Patrón de plumas negras y grises) - Panel Decorativo",
+                "formato": "30 x 60 cm"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Texturado Negro",
+                "formato": "60 x 60 cm",
+                "codigo": "LFG 66099"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Listelo metálico plateado en relieve (Zigzag Plateado)",
+                "formato": "4 x 60 cm"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Sanitario",
+                "marca": "Frencia",
+                "diseño": "One Piece",
+                "formato": null,
+                "color": "Blanco (con base negra)"
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "nombre_ambiente": "Ambiente 12",
+        "nombre_serie": "Serie Carolina Black",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Cerámico Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Blanco Brillante - Pared Base",
+                "formato": "30 x 60 cm",
+                "codigo": "LG 36001"
+            },
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Inserto Importado",
+                "marca": null,
+                "diseño": "Carolina Black (Patrón floral negro sobre fondo blanco)",
+                "formato": "30 x 60 cm"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Texturado Negro",
+                "formato": "60 x 60 cm",
+                "codigo": "LFG 66099"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Listelo Superior",
+                "marca": null,
+                "diseño": "Zigzag Plateado",
+                "formato": "4 x 60 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Listelo Inferior",
+                "marca": null,
+                "diseño": "Listelo Amapolas",
+                "formato": "10 x 60 cm"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Sanitario",
+                "marca": "Frencia",
+                "diseño": "One Piece",
+                "formato": null,
+                "color": "Blanco"
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "nombre_ambiente": "Ambiente 13",
+        "nombre_serie": "Serie Diamante Plata & Inserto Goku",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Cerámico Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Diamante Plata - Pared Principal",
+                "formato": "30 x 60 cm",
+                "codigo": "LG 36107 A"
+            },
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Vitrificado",
+                "marca": null,
+                "diseño": "Chispeado Negro - Pared Lateral",
+                "formato": "60 x 60 cm",
+                "codigo": "AG 6002"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Inserto",
+                "marca": null,
+                "diseño": "Inserto Goku",
+                "formato": "20 x 60 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Lápiz Dorado",
+                "formato": "2 x 60 cm",
+                "codigo": "G 2 E"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Inodoro",
+                "marca": "Importado",
+                "diseño": "Inodoro negro con línea dorada - Línea dorada",
+                "formato": null,
+                "codigo": "2070 VG"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Lavatorio",
+                "marca": null,
+                "diseño": "Bowl sobre encimera con base de madera",
+                "formato": null
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Vitrificado",
+                "marca": null,
+                "diseño": "Chispeado Negro",
+                "formato": "60 x 60 cm",
+                "codigo": "AG 6002"
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "nombre_ambiente": "Ambiente 14",
+        "nombre_serie": "Serie Calafate Grey & Fachaleta Piedra Caliza",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Importado",
+                "marca": "Línea Taylor",
+                "diseño": "Calafate Grey (Mármol blanco con vetas grises) - Pared Principal",
+                "formato": "30 x 60 cm",
+                "codigo": "311007995"
+            },
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Fachaleta",
+                "marca": null,
+                "diseño": "Piedra Caliza - Pared Lateral",
+                "formato": "30 x 60 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Inserto",
+                "marca": null,
+                "diseño": "Kashmir Silver (Temática Spa con toallas y accesorios)",
+                "formato": "20 x 60 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Silver Plateado",
+                "formato": "2 x 60 cm"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato",
+                "marca": null,
+                "diseño": "Piedra Caliza (Multicolor gris/marrón)",
+                "formato": "60 x 60 cm"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Sanitario",
+                "marca": "Frencia",
+                "diseño": "Taza y tanque (Sanitario) y Lavatorio de pedestal",
+                "formato": null,
+                "color": "Blanco"
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "nombre_ambiente": "Ambiente 15",
+        "nombre_serie": "Serie Canvas Azul & Larizza Blanco",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Cerámico Nacional",
+                "marca": "San Lorenzo",
+                "diseño": "Canvas Azul - Pared Inferior (Izquierda)",
+                "formato": "27 x 45 cm"
+            },
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Cerámico Nacional",
+                "marca": "San Lorenzo",
+                "diseño": "Larizza Blanco (Mosaico) - Pared Superior (Izquierda)",
+                "formato": "27 x 45 cm"
+            },
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Importado",
+                "marca": "Línea Taylor",
+                "diseño": "Almudena Claro (Mármol con vetas marrones/ocre) - Pared Derecha",
+                "formato": "30 x 60 cm",
+                "codigo": "311012262"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Inserto",
+                "marca": null,
+                "diseño": "Roswell (Temática Spa con flores azules y toallas)",
+                "formato": "15 x 60 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Lápiz metálico",
+                "formato": "2 x 60 cm",
+                "codigo": "J 2-2 S"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Gris Mate",
+                "formato": "60 x 60 cm",
+                "codigo": "WFG 66002"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Sanitario",
+                "marca": "Orange",
+                "diseño": "One Piece Orange Blanco (Taza y tanque pulsador)",
+                "formato": null,
+                "color": "Blanco"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Lavatorio",
+                "marca": null,
+                "diseño": "Lavatorio de pedestal blanco",
+                "formato": null
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "nombre_ambiente": "Ambiente 16",
+        "nombre_serie": "Serie Escarchado Gris & Estudio Grafito",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Importado",
+                "marca": null,
+                "diseño": "Escarchado Gris - Pared Principal Fondo",
+                "formato": "60 x 60 cm",
+                "codigo": "JS 66 J 61"
+            },
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Vitrificado Tallado",
+                "marca": null,
+                "diseño": "Vincenzo - Pared Lateral Derecha",
+                "formato": "60 x 60 cm",
+                "codigo": "HG 60200006 PE"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelánica Importada",
+                "marca": "San Lorenzo",
+                "diseño": "Estudio Grafito",
+                "formato": "60 x 60 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Listelo",
+                "marca": null,
+                "diseño": "Zigzag Dorado",
+                "formato": "10 x 60 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Dorado",
+                "formato": "2 x 60 cm"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Sanitario",
+                "marca": "Orange",
+                "diseño": "Sanitario One Piece Orange Blanco",
+                "formato": null,
+                "color": "Blanco"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Lavatorio",
+                "marca": null,
+                "diseño": "Lavatorio de pedestal blanco",
+                "formato": null
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "nombre_ambiente": "Ambiente 17",
+        "nombre_serie": "Serie Escarchado Gris & Estudio Grafito",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Importado",
+                "marca": null,
+                "diseño": "Escarchado Gris (Mármol blanco con vetas grises y chispas/escarchado dorado) - Pared Principal",
+                "formato": "60 x 60 cm",
+                "codigo": "JS 66 J 61"
+            },
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Cerámico Nacional",
+                "marca": "San Lorenzo",
+                "diseño": "Paquetón Golden - Pared Lateral",
+                "formato": "20 x 61 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Listelo",
+                "marca": null,
+                "diseño": "Zigzag Dorado (greca geométrica)",
+                "formato": "10 x 60 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Lápiz Dorado",
+                "formato": "2 x 60 cm",
+                "codigo": "G 2 Golden"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelánica Importada",
+                "marca": "San Lorenzo",
+                "diseño": "Estudio Grafito",
+                "formato": "60 x 60 cm"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Sanitario",
+                "marca": "Orange",
+                "diseño": "Sanitario One Piece Blanco",
+                "formato": null,
+                "color": "Blanco"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Lavatorio",
+                "marca": null,
+                "diseño": "Lavatorio de pedestal blanco",
+                "formato": null
+            }
+        ]
+    },
+    {
+        "id": 18,
+        "nombre_ambiente": "Ambiente 18",
+        "nombre_serie": "Serie Bola Navidad & Madera Nevado",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Importado",
+                "marca": null,
+                "diseño": "Bola Navidad (Mármol blanco con vetas grises/doradas y acabado brillante) - Pared Principal",
+                "formato": "60 x 60 cm"
+            },
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Importado",
+                "marca": "Línea Taylor",
+                "diseño": "Madera Nevado - Pared Lateral Izquierda",
+                "formato": "60 x 60 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Inserto",
+                "marca": null,
+                "diseño": "Selene Bl Selene (Esferas/burbujas bronce)",
+                "formato": "15 x 60 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Lápiz Dorado",
+                "formato": "2 x 60 cm",
+                "codigo": "G 2 Golden"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Importado",
+                "marca": "Línea Taylor",
+                "diseño": "Madera Nevado",
+                "formato": "60 x 60 cm"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Sanitario",
+                "marca": "Orange",
+                "diseño": "Taza y tanque blanco",
+                "formato": null,
+                "color": "Blanco"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Lavatorio",
+                "marca": "Orange",
+                "diseño": "Lavatorio de pedestal",
+                "formato": null
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Urinario",
+                "marca": null,
+                "diseño": "Modelo infantil verde",
+                "formato": null,
+                "color": "Verde"
+            }
+        ]
+    },
+    {
+        "id": 19,
+        "nombre_ambiente": "Ambiente 19",
+        "nombre_serie": "Serie Onda Gris & Zen",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Cerámico Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Onda Gris (Relieve de ondas con texturas internas) - Pared Derecha",
+                "formato": "30 x 60 cm",
+                "codigo": "LG 36072 C"
+            },
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Cerámico Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Zen (Blanco con relieve de hojas) - Pared Izquierda",
+                "formato": "30 x 60 cm",
+                "codigo": "LLG 36090 B"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Inserto",
+                "marca": null,
+                "diseño": "Insertgoto (Temática Spa con piedras y fragancias)",
+                "formato": "20 x 60 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Lápiz Plateado",
+                "formato": "2 x 60 cm",
+                "codigo": "S 2 E"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Negro Mate",
+                "formato": "60 x 60 cm",
+                "codigo": "LFG 66098"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Inodoro",
+                "marca": "Importado",
+                "diseño": "One Piece blanco (4.8 L de consumo)",
+                "formato": null,
+                "color": "Blanco"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Urinario",
+                "marca": null,
+                "diseño": "Modelo infantil color guinda/vino",
+                "formato": null,
+                "color": "Guinda/Vino"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Sanitario Adicional",
+                "marca": "Frencia",
+                "diseño": "Sanitario adicional",
+                "formato": null,
+                "color": "Boné"
+            }
+        ]
+    },
+    {
+        "id": 20,
+        "nombre_ambiente": "Ambiente 20",
+        "nombre_serie": "Serie Ladrillo Café & Mármol Marfil",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Cerámico Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Ladrillo Beige - Pared Superior",
+                "formato": "30 x 60 cm",
+                "codigo": "LG 36071 A"
+            },
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Cerámico Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Ladrillo Marrón / Café - Pared Inferior",
+                "formato": "30 x 60 cm",
+                "codigo": "LG 36071 B"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Inserto",
+                "marca": null,
+                "diseño": "Inserto Clara (Temática Spa con toallas y piedras)",
+                "formato": "15 x 60 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Lápiz Dorado",
+                "formato": "2 x 60 cm",
+                "codigo": "J 2 2 G"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Mármol Marfil",
+                "formato": "60 x 60 cm",
+                "codigo": "LFG 66018"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Sanitario",
+                "marca": "Frencia",
+                "diseño": "Sanitario One Piece y Lavatorio de pedestal",
+                "formato": null,
+                "color": "Boné"
+            }
+        ]
+    },
+    {
+        "id": 21,
+        "nombre_ambiente": "Ambiente 21",
+        "nombre_serie": "Serie Pasión Red & Pasión White",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Cerámico Nacional",
+                "marca": "San Lorenzo",
+                "diseño": "Pasión White (Textura relieve diamante) - Pared Blanca",
+                "formato": "27 x 45 cm"
+            },
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Cerámico Nacional",
+                "marca": "San Lorenzo",
+                "diseño": "Pasión Red (Rojo brillante con mismo relieve) - Pared Roja",
+                "formato": "27 x 45 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Listelo",
+                "marca": "Nacional",
+                "diseño": "Diseño de círculos concéntricos en rojo y blanco",
+                "formato": "7 x 36 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Lápiz de Vidrio",
+                "formato": "1.5 x 50 cm"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato",
+                "marca": null,
+                "diseño": "Blanco con vetas grises (coordinado)",
+                "formato": null
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Sanitario",
+                "marca": "Trébol",
+                "diseño": "Taza y tanque (Sanitario de dos piezas) y Lavatorio de pedestal",
+                "formato": null,
+                "color": "Blanco"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Espejo",
+                "marca": null,
+                "diseño": "Espejo circular con borde texturizado",
+                "formato": null
+            }
+        ]
+    },
+    {
+        "id": 22,
+        "nombre_ambiente": "Ambiente 22",
+        "nombre_serie": "Serie Hexágono Dorado & Palermo",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Cerámico Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Hexágono Dorado (Relieve geométrico hexagonal) - Pared Principal",
+                "formato": "30 x 60 cm",
+                "codigo": "LG 36099"
+            },
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Cerámico Nacional",
+                "marca": "San Lorenzo",
+                "diseño": "Patrón geométrico amaderado en tonos café - Pared Derecha",
+                "formato": null
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Inserto",
+                "marca": "Importado",
+                "diseño": "Esferas Beige (Burbujas en tonos bronce/marrón)",
+                "formato": "30 x 60 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Inserto Adicional",
+                "marca": null,
+                "diseño": "Temática Spa/Relajación",
+                "formato": null
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Lápiz",
+                "formato": "2 x 60 cm",
+                "codigo": "G 34"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Importado",
+                "marca": null,
+                "diseño": "Years Jersey Beige",
+                "formato": "60 x 60 cm"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Sanitario",
+                "marca": "Frencia",
+                "diseño": "Palermo (Inodoro One Piece y Lavatorio de pedestal)",
+                "formato": null,
+                "color": "Boné"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Urinario",
+                "marca": null,
+                "diseño": "Modelo 'baby' a juego",
+                "formato": null,
+                "color": "Beige"
+            }
+        ]
+    },
+    {
+        "id": 23,
+        "nombre_ambiente": "Ambiente 23",
+        "nombre_serie": "Serie Flores Azul & Gris Mate",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Cerámico Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Flores Azul - Pared Principal",
+                "formato": "60 x 60 cm",
+                "codigo": "LPIE 66985"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Importado",
+                "marca": null,
+                "diseño": "Mármol Carrara (Blanco con vetas grises)",
+                "formato": "60 x 60 cm"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Sanitario",
+                "marca": "Orange",
+                "diseño": "Smart (Línea Taylor) - Tanque bajo y diseño elongado, pulsador cromado",
+                "formato": null,
+                "color": "Gris Mate"
+            }
+        ]
+    },
+    {
+        "id": 24,
+        "nombre_ambiente": "Ambiente 24",
+        "nombre_serie": "Serie Calafate Grey & Inserto Silver",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Importado",
+                "marca": "Línea Taylor",
+                "diseño": "Calafate Grey (Mármol blanco con vetas grises suaves) - Pared Base",
+                "formato": "30 x 60 cm",
+                "codigo": "311007995"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Inserto",
+                "marca": null,
+                "diseño": "Kashmir Silver (Temática Spa con toallas negras, jabonera y flor blanca)",
+                "formato": "20 x 60 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Lápiz plateado con relieve estriado",
+                "formato": "2 x 60 cm",
+                "codigo": "S 2 E"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Gris Mate",
+                "formato": "60 x 60 cm",
+                "codigo": "WFG 66002"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Sanitario",
+                "marca": "Trébol",
+                "diseño": "Taza y tanque (Sanitario de dos piezas con palanca lateral)",
+                "formato": null,
+                "color": "Blanco"
+            }
+        ]
+    },
+    {
+        "id": 25,
+        "nombre_ambiente": "Ambiente 25",
+        "nombre_serie": "Serie Estocolmo Gris & Amapolas",
+        "categoria": "baño",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Cerámico Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Estocolmo Gris (Textura pétrea con matices grises) - Pared Base",
+                "formato": "30 x 60 cm",
+                "codigo": "LG 36043"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Inserto",
+                "marca": null,
+                "diseño": "Listelo Amapolas (Floral rosas/amapolas negras fondo blanco)",
+                "formato": "10 x 60 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Lápiz plateado con estrías",
+                "formato": "2 x 60 cm",
+                "codigo": "S 2 E"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Negro Mate",
+                "formato": "60 x 60 cm",
+                "codigo": "LFG 66098"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Sanitario",
+                "marca": "Trébol",
+                "diseño": "Taza y tanque con lavatorio de pedestal",
+                "formato": null,
+                "color": "Blanco"
+            },
+            {
+                "tipo_uso": "sanitario",
+                "tipo_producto": "Urinario",
+                "marca": null,
+                "diseño": "Modelo 'baby' coordinado",
+                "formato": null,
+                "color": "Blanco"
+            }
+        ]
+    },
+    {
+        "id": 26,
+        "nombre_ambiente": "Ambiente 26",
+        "nombre_serie": "Serie Ladrillo Café",
+        "categoria": "cocina",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Ladrillo Café (Textura bloques madera/ladrillo en tonos marrones) - Pared Principal",
+                "formato": "30 x 60 cm",
+                "codigo": "LG 36071 B"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Inserto de Cocina",
+                "marca": null,
+                "diseño": "Inserto Frutas (Tazas de fresas, uvas y utensilios)",
+                "formato": "20 x 60 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Lápiz Dorado",
+                "formato": "2 x 60 cm",
+                "codigo": "J 2 2 G"
+            },
+            {
+                "tipo_uso": "mobiliario",
+                "tipo_producto": "Repostero",
+                "marca": null,
+                "diseño": "Mueble de cocina aéreo en color blanco con tiradores dorados",
+                "formato": null
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Mármol Marfil",
+                "formato": "60 x 60 cm",
+                "codigo": "LFG 66018"
+            }
+        ]
+    },
+    {
+        "id": 27,
+        "nombre_ambiente": "Ambiente 27",
+        "nombre_serie": "Serie Carrara & Inserto Tetera",
+        "categoria": "cocina",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Importado",
+                "marca": "Línea Taylor",
+                "diseño": "Calafate Grey (Mármol blanco con vetas grises) - Pared Principal Fondo",
+                "formato": "30 x 60 cm",
+                "codigo": "311007995"
+            },
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Importado",
+                "marca": "Línea Taylor",
+                "diseño": "Almudena Claro (Mármol con vetas ocre/marrones) - Pared Lateral",
+                "formato": "30 x 60 cm",
+                "codigo": "311012262"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Inserto de Cocina",
+                "marca": null,
+                "diseño": "Inserto Tetera (Teteras plateadas, tazas, cafetera prensa)",
+                "formato": "20 x 60 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Lápiz Plateado con relieve",
+                "formato": "2 x 60 cm",
+                "codigo": "S 2 E"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Importado",
+                "marca": "Línea Taylor",
+                "diseño": "Madera Nevado",
+                "formato": "60 x 60 cm"
+            },
+            {
+                "tipo_uso": "mobiliario",
+                "tipo_producto": "Repostero",
+                "marca": null,
+                "diseño": "Mueble aéreo de cocina en color blanco con tiradores dorados",
+                "formato": null
+            }
+        ]
+    },
+    {
+        "id": 28,
+        "nombre_ambiente": "Ambiente 28",
+        "nombre_serie": "Serie Almudena & Inserto Vajilla",
+        "categoria": "cocina",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Importado",
+                "marca": "Línea Taylor",
+                "diseño": "Almudena Claro (Mármol crema/ocre) - Pared Principal",
+                "formato": "30 x 60 cm",
+                "codigo": "311012262"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Inserto de Cocina",
+                "marca": null,
+                "diseño": "Inserto Vajilla (Teteras blancas, tazas de té, cuencos dorados/marrón)",
+                "formato": "20 x 60 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Lápiz Dorado",
+                "formato": "2 x 60 cm",
+                "codigo": "J 2 2 G"
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Importado",
+                "marca": "Línea Taylor",
+                "diseño": "Madera Nevado",
+                "formato": "60 x 60 cm"
+            },
+            {
+                "tipo_uso": "mobiliario",
+                "tipo_producto": "Reposteros",
+                "marca": null,
+                "diseño": "Conjunto de muebles de cocina (superior e inferior) en color blanco con tiradores metálicos",
+                "formato": null
+            }
+        ]
+    },
+    {
+        "id": 29,
+        "nombre_ambiente": "Ambiente 29",
+        "nombre_serie": "Serie Mixta Onda Negro & Hexágono Dorado",
+        "categoria": "cocina",
+        "items": [
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Onda Negro (Mármol sobre fondo negro) - Pared Lateral Izquierda",
+                "formato": "30 x 60 cm",
+                "codigo": "LG 36072 D"
+            },
+            {
+                "tipo_uso": "pared",
+                "tipo_producto": "Porcelanato Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Hexágono Dorado (Relieve geométrico hexagonal blanco) - Pared Principal Fondo",
+                "formato": "30 x 60 cm",
+                "codigo": "LG 36099"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Inserto de Cocina",
+                "marca": null,
+                "diseño": "Inserto Chef (Ollas negras, mortero, reloj y especias)",
+                "formato": "20 x 60 cm"
+            },
+            {
+                "tipo_uso": "detalle_decorativo",
+                "tipo_producto": "Lápiz",
+                "marca": null,
+                "diseño": "Lápiz Dorado",
+                "formato": "2 x 60 cm",
+                "codigo": "J 2 2 G"
+            },
+            {
+                "tipo_uso": "mobiliario",
+                "tipo_producto": "Repostero",
+                "marca": null,
+                "diseño": "Mueble aéreo de cocina en color blanco con tiradores metálicos ondulados",
+                "formato": null
+            },
+            {
+                "tipo_uso": "piso",
+                "tipo_producto": "Porcelanato Nacional",
+                "marca": "Porcelatino",
+                "diseño": "Mármol Marfil",
+                "formato": "60 x 60 cm",
+                "codigo": "LFG 66018"
+            }
+        ]
+    }
+]

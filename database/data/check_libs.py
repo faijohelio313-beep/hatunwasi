@@ -1,0 +1,19 @@
+import sys
+
+try:
+    import pypdf
+    print("pypdf is installed, version:", pypdf.__version__)
+except ImportError:
+    print("pypdf is NOT installed")
+
+try:
+    import pdfplumber
+    print("pdfplumber is installed")
+except ImportError:
+    print("pdfplumber is NOT installed")
+
+try:
+    import fitz # PyMuPDF
+    print("PyMuPDF (fitz) is installed")
+except ImportError:
+    print("PyMuPDF (fitz) is NOT installed")
