@@ -3,30 +3,37 @@
 namespace App\Livewire;
 
 use App\Models\Combo;
+use App\Models\Order;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class StoreMain extends Component
 {
-    public $search = '';
-    public $selectedCategory = 'todos'; // todos, baño, cocina
-    public $cart = [];
-    public $selectedComboId = null;
-    public $showDetailModal = false;
-    public $showCartDrawer = false;
-    public $checkoutSuccess = false;
+    use WithPagination;
 
-    // Escucha eventos si es necesario
-    protected $listeners = ['cartUpdated' => '$refresh'];
+    public string $search = '';
+    public string $selectedCategory = 'todos';
+    public array  $cart = [];
 
-    public function mount()
+    public ?int $selectedComboId = null;
+    public bool $showDetailModal   = false;
+    public bool $showCartDrawer    = false;
+    public bool $showCheckoutForm  = false;
+    public bool $checkoutSuccess   = false;
+    public ?int $checkoutOrderId   = null;
+
+    // Datos del cliente para el pedido
+    public string $customerName  = '';
+    public string $customerPhone = '';
+    public string $customerEmail = '';
+
+    public function mount(): void
     {
-        // Cargar el carrito desde la sesión
         $this->cart = session()->get('cart', []);
     }
 
     public function render()
     {
-        // Consultar los combos aplicando filtros
         $query = Combo::with('products');
 
         if ($this->selectedCategory !== 'todos') {
@@ -35,160 +42,180 @@ class StoreMain extends Component
 
         if (!empty($this->search)) {
             $query->where(function ($q) {
-                $q->where('nombre', 'LIKE', '%' . $this->search . '%')
-                  ->orWhere('descripcion', 'LIKE', '%' . $this->search . '%')
+                $q->where('nombre', 'LIKE', "%{$this->search}%")
+                  ->orWhere('descripcion', 'LIKE', "%{$this->search}%")
                   ->orWhereHas('products', function ($pq) {
-                      $pq->where('nombre', 'LIKE', '%' . $this->search . '%')
-                        ->orWhere('codigo', 'LIKE', '%' . $this->search . '%');
+                      $pq->where('nombre', 'LIKE', "%{$this->search}%")
+                         ->orWhere('codigo', 'LIKE', "%{$this->search}%");
                   });
             });
         }
 
-        $combos = $query->get();
+        $combos = $query->paginate(12);
 
-        // Obtener el desglose de productos del combo seleccionado para el modal
-        $selectedCombo = $this->selectedComboId ? Combo::with('products')->find($this->selectedComboId) : null;
+        $selectedCombo = $this->selectedComboId
+            ? Combo::with('products')->find($this->selectedComboId)
+            : null;
 
         return view('livewire.store-main', [
-            'combos' => $combos,
+            'combos'        => $combos,
             'selectedCombo' => $selectedCombo,
-            'cartItems' => $this->getCartItems(),
-            'cartTotal' => $this->getCartTotal(),
-            'cartCount' => $this->getCartCount(),
-        ])->layout('layouts.app'); // Utilizar el layout por defecto
+            'cartItems'     => $this->getBatchedCartItems(),
+            'cartTotal'     => $this->getCartTotal(),
+            'cartCount'     => $this->getCartCount(),
+        ])->layout('layouts.store');
     }
 
-    /**
-     * Añadir combo al carrito.
-     */
-    public function addToCart($comboId)
-    {
-        if (isset($this->cart[$comboId])) {
-            $this->cart[$comboId]++;
-        } else {
-            $this->cart[$comboId] = 1;
-        }
+    // -------------------------------------------------------------------------
+    // Filtros
+    // -------------------------------------------------------------------------
 
+    public function updatingSearch(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatingSelectedCategory(): void
+    {
+        $this->resetPage();
+    }
+
+    // -------------------------------------------------------------------------
+    // Carrito
+    // -------------------------------------------------------------------------
+
+    public function addToCart(int $comboId): void
+    {
+        $this->cart[$comboId] = ($this->cart[$comboId] ?? 0) + 1;
         $this->saveCart();
-        $this->showCartDrawer = true; // Abrir el carrito lateral automáticamente
+        $this->showCartDrawer = true;
         $this->dispatch('notify', ['message' => 'Combo añadido al carrito', 'type' => 'success']);
     }
 
-    /**
-     * Quitar combo o reducir cantidad en el carrito.
-     */
-    public function removeFromCart($comboId)
+    public function removeFromCart(int $comboId): void
     {
-        if (isset($this->cart[$comboId])) {
-            unset($this->cart[$comboId]);
-        }
-
+        unset($this->cart[$comboId]);
         $this->saveCart();
         $this->dispatch('notify', ['message' => 'Combo eliminado del carrito', 'type' => 'info']);
     }
 
-    /**
-     * Actualizar la cantidad de un item en el carrito.
-     */
-    public function updateQuantity($comboId, $quantity)
+    public function updateQuantity(int $comboId, int $quantity): void
     {
-        $quantity = (int)$quantity;
         if ($quantity <= 0) {
             unset($this->cart[$comboId]);
         } else {
             $this->cart[$comboId] = $quantity;
         }
-
         $this->saveCart();
     }
 
-    /**
-     * Limpiar el carrito de compras.
-     */
-    public function clearCart()
+    public function clearCart(): void
     {
         $this->cart = [];
         $this->saveCart();
     }
 
-    /**
-     * Abrir el modal de detalle para un combo específico.
-     */
-    public function openDetail($comboId)
+    public function getCartCount(): int
+    {
+        return array_sum($this->cart);
+    }
+
+    public function getCartTotal(): float
+    {
+        return collect($this->getBatchedCartItems())->sum('subtotal');
+    }
+
+    // -------------------------------------------------------------------------
+    // Modal de detalle
+    // -------------------------------------------------------------------------
+
+    public function openDetail(int $comboId): void
     {
         $this->selectedComboId = $comboId;
         $this->showDetailModal = true;
     }
 
-    /**
-     * Cerrar el modal de detalle.
-     */
-    public function closeDetail()
+    public function closeDetail(): void
     {
         $this->selectedComboId = null;
         $this->showDetailModal = false;
     }
 
-    /**
-     * Simular la compra.
-     */
-    public function checkout()
+    // -------------------------------------------------------------------------
+    // Checkout
+    // -------------------------------------------------------------------------
+
+    public function openCheckoutForm(): void
     {
-        if (empty($this->cart)) {
-            return;
+        if (empty($this->cart)) return;
+        $this->showCartDrawer    = false;
+        $this->showCheckoutForm  = true;
+    }
+
+    public function confirmCheckout(): void
+    {
+        $this->validate([
+            'customerName'  => 'required|string|min:3|max:100',
+            'customerPhone' => 'required|string|min:6|max:20',
+            'customerEmail' => 'nullable|email|max:150',
+        ]);
+
+        if (empty($this->cart)) return;
+
+        $items = $this->getBatchedCartItems();
+        $total = collect($items)->sum('subtotal');
+
+        $order = Order::create([
+            'customer_name'  => $this->customerName,
+            'customer_phone' => $this->customerPhone,
+            'customer_email' => $this->customerEmail ?: null,
+            'total'          => $total,
+            'status'         => 'pendiente',
+        ]);
+
+        foreach ($items as $item) {
+            $order->items()->create([
+                'combo_id'       => $item['combo']->id,
+                'combo_nombre'   => $item['combo']->nombre,
+                'cantidad'       => $item['quantity'],
+                'precio_unitario'=> $item['combo']->precio_oferta,
+                'subtotal'       => $item['subtotal'],
+            ]);
         }
 
         $this->clearCart();
-        $this->showCartDrawer = false;
-        $this->checkoutSuccess = true;
+        $this->showCheckoutForm = false;
+        $this->checkoutSuccess  = true;
+        $this->checkoutOrderId  = $order->id;
+
+        $this->reset(['customerName', 'customerPhone', 'customerEmail']);
     }
 
-    /**
-     * Obtener el conteo total de items en el carrito.
-     */
-    public function getCartCount()
-    {
-        return array_sum($this->cart);
-    }
+    // -------------------------------------------------------------------------
+    // Helpers privados
+    // -------------------------------------------------------------------------
 
-    /**
-     * Obtener el costo total de los productos en el carrito.
-     */
-    public function getCartTotal()
+    private function getBatchedCartItems(): array
     {
-        $total = 0;
+        if (empty($this->cart)) return [];
+
+        $combos = Combo::whereIn('id', array_keys($this->cart))->get()->keyBy('id');
+        $items  = [];
+
         foreach ($this->cart as $id => $qty) {
-            $combo = Combo::find($id);
-            if ($combo) {
-                $total += $combo->precio_oferta * $qty;
-            }
-        }
-        return $total;
-    }
-
-    /**
-     * Obtener los objetos Combo del carrito.
-     */
-    private function getCartItems()
-    {
-        $items = [];
-        foreach ($this->cart as $id => $qty) {
-            $combo = Combo::find($id);
-            if ($combo) {
+            if ($combo = $combos->get($id)) {
                 $items[] = [
-                    'combo' => $combo,
+                    'combo'    => $combo,
                     'quantity' => $qty,
-                    'subtotal' => $combo->precio_oferta * $qty
+                    'subtotal' => $combo->precio_oferta * $qty,
                 ];
             }
         }
+
         return $items;
     }
 
-    /**
-     * Guardar el carrito actual en la sesión de Laravel.
-     */
-    private function saveCart()
+    private function saveCart(): void
     {
         session()->put('cart', $this->cart);
     }

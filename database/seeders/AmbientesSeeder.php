@@ -83,9 +83,16 @@ class AmbientesSeeder extends Seeder
             $precioOferta = round($totalLista * (1 - $descuento / 100), 2);
             $totalLista = round($totalLista, 2);
 
-            // Mapear imagen simulada del ambiente
-            $idStr = str_pad($amb['id'], 2, '0', STR_PAD_LEFT);
-            $imagenPath = "ambiente_{$idStr}.jpg";
+            // Mapear imagen real del ambiente
+            $id = $amb['id'];
+            $idStr = str_pad($id, 2, '0', STR_PAD_LEFT);
+            if ($id === 5 || $id === 6) {
+                $imagenPath = "{$id}.jpg";
+            } elseif ($id === 20) {
+                $imagenPath = "21.png"; // Fallback para la imagen 20 faltante
+            } else {
+                $imagenPath = "{$id}.png";
+            }
 
             $combo = Combo::create([
                 'nombre' => "COMBO Watun Wasi: " . ($amb['nombre_serie'] ?: "Ambiente {$idStr}"),

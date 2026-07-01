@@ -11,10 +11,7 @@ class Product extends Model
 
     protected $guarded = ['id'];
 
-    public function clients()
-    {
-        return $this->belongsToMany(Client::class);
-    }
+
 
     public function combos()
     {

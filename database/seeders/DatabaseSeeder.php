@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Product;
 use App\Models\User;
-use App\Models\Client;
+
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -25,22 +25,15 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt("helio12325"),
         ]);
 
-        // Crea 3000 registros de productos usando el Factory que configuramos antes
-        $products = Product::factory(3000)->create();
+        // DESACTIVADO: generaba 3000 productos de prueba (Faker) con nombres sin sentido
+        // ("a atque", "a ea"...) que inundaban el selector de productos del panel admin.
+        // Los productos reales se crean en AmbientesSeeder a partir del catálogo JSON.
+        // $products = Product::factory(3000)->create();
 
         // Sembrar combos y productos del catálogo real
         $this->call(AmbientesSeeder::class);
 
-        // Volver a obtener productos (incluyendo los de los combos) para relacionarlos con clientes
-        $allProducts = Product::all();
 
-        // Crea 50 clientes y les asocia entre 1 y 5 productos aleatorios
-        $clients = Client::factory(50)->create();
-        $clients->each(function ($client) use ($allProducts) {
-            $client->products()->attach(
-                $allProducts->random(rand(1, 5))->pluck('id')->toArray()
-            );
-        });
     }
 }
 
