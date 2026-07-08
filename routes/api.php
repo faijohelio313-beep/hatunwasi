@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('v1')->group(function () {
+// throttle:60,1 → máximo 60 peticiones por minuto por IP, contra abuso de la API pública
+Route::prefix('v1')->middleware('throttle:60,1')->group(function () {
 
     // GET /api/v1/combos
     // Lista todos los combos (con paginación opcional: ?per_page=12&page=1)

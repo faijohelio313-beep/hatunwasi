@@ -16,7 +16,7 @@
     {{-- ===================================================================
          CABECERA PRINCIPAL — logo serif centrado
     =================================================================== --}}
-    <header class="bg-white sticky top-0 z-40 border-b border-neutral-100 shadow-[0_2px_24px_-8px_rgba(0,0,0,0.12)]">
+    <header class="bg-white/90 backdrop-blur-md sticky top-0 z-40 border-b border-neutral-100 shadow-[0_2px_24px_-8px_rgba(0,0,0,0.12)]">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 py-2 grid grid-cols-3 items-center gap-4">
 
             {{-- Izquierda: buscador --}}
@@ -35,7 +35,7 @@
 
             {{-- Centro: logo --}}
             <div class="col-span-1 flex flex-col items-center justify-center cursor-pointer py-1" wire:click="$set('selectedCategory', 'todos')">
-                <img src="{{ asset('images/logo.png') }}" alt="Hatun Wasi" class="h-28 sm:h-32 w-auto object-contain" style="filter: drop-shadow(0 2px 8px rgba(0,0,0,0.08))">
+                <img src="{{ asset('images/logo.png') }}" alt="Hatun Wasi" class="h-16 sm:h-20 w-auto object-contain" style="filter: drop-shadow(0 2px 8px rgba(0,0,0,0.08))">
             </div>
 
             {{-- Derecha: cita + carrito --}}
@@ -54,9 +54,9 @@
             </div>
         </div>
 
-        {{-- Navegación de categorías --}}
+        {{-- Navegación de categorías (scroll horizontal en móvil, centrada en escritorio) --}}
         <nav class="border-t border-neutral-100">
-            <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-center gap-10 text-[12px] tracking-widest uppercase">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-start lg:justify-center gap-6 lg:gap-10 text-[12px] tracking-widest uppercase overflow-x-auto whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 @foreach([['todos','Todos los Ambientes'],['baño','Baños'],['cocina','Cocinas']] as [$val,$label])
                     <button
                         wire:click="$set('selectedCategory', '{{ $val }}')"
@@ -66,20 +66,89 @@
                         <span class="absolute left-0 bottom-0 h-px bg-[#A98A4B] transition-all duration-300 {{ $selectedCategory == $val ? 'w-full' : 'w-0' }}"></span>
                     </button>
                 @endforeach
+
+                <span class="h-3 w-px bg-neutral-200"></span>
+
+                {{-- Categorías de otros módulos del proyecto (solo vista, sin datos) --}}
+                @foreach([['revestimientos','Revestimientos'],['accesorios','Accesorios'],['sanitarios','Sanitarios'],['ceramicos-y-componentes','Cerámicos y Componentes']] as [$slug,$label])
+                    <a href="{{ route('catalogo.proximamente', $slug) }}" class="py-3.5 text-neutral-400 hover:text-neutral-600 transition-colors duration-200">
+                        {{ $label }}
+                    </a>
+                @endforeach
             </div>
         </nav>
     </header>
 
     {{-- ===================================================================
-         BANNER ÉXITO TRAS PEDIDO
+         MODAL ÉXITO + INSTRUCCIONES DE PAGO según el método elegido
     =================================================================== --}}
     @if($checkoutSuccess)
-        <div class="bg-neutral-900 text-white py-8 px-4 text-center">
-            <h2 class="font-display text-3xl mb-2">Gracias por tu pedido</h2>
-            <p class="text-sm text-neutral-300 tracking-wide">Tu solicitud <strong class="text-[#A98A4B]">#{{ str_pad($checkoutOrderId, 5, '0', STR_PAD_LEFT) }}</strong> fue registrada. Te contactaremos muy pronto.</p>
-            <button wire:click="$set('checkoutSuccess', false)" class="mt-4 px-7 py-2.5 border border-white/40 hover:border-[#A98A4B] hover:text-[#A98A4B] text-xs tracking-widest uppercase transition">
-                Seguir explorando
-            </button>
+        <div class="fixed inset-0 bg-neutral-900/75 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="bg-white max-w-md w-full shadow-2xl max-h-[92vh] overflow-y-auto">
+
+                {{-- Cabecera de confirmación --}}
+                <div class="bg-neutral-900 text-white px-6 py-6 text-center">
+                    <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-emerald-500 flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                    </div>
+                    <h2 class="font-display text-2xl">¡Pedido registrado!</h2>
+                    <p class="text-[12px] text-neutral-400 mt-1">Pedido <span class="text-[#d8c39a] font-semibold">#{{ str_pad($checkoutOrderId, 5, '0', STR_PAD_LEFT) }}</span> · Total <span class="text-white font-semibold tabular-nums">S/ {{ number_format($checkoutTotal, 2) }}</span></p>
+                </div>
+
+                {{-- Instrucciones según método de pago --}}
+                <div class="p-6">
+                    @if($checkoutMetodoPago === 'yape')
+                        <div class="text-center">
+                            <span class="inline-block text-[11px] font-bold tracking-widest uppercase text-white px-4 py-1.5 rounded-full" style="background:#742284">Pagar con Yape</span>
+                            <img src="{{ asset('images/pagos/qr-yape.png') }}" alt="QR Yape Hatun Wasi" class="w-44 h-44 mx-auto mt-4 border-4 rounded-lg" style="border-color:#742284">
+                            <p class="text-sm text-neutral-700 mt-3">Escanea el QR o yapea al</p>
+                            <p class="text-2xl font-bold text-neutral-900 tabular-nums">987 654 321</p>
+                            <p class="text-[12px] text-neutral-500 mt-1">A nombre de <strong>Casas Cerámicos Hatun Wasi E.I.R.L.</strong></p>
+                            <div class="mt-4 bg-neutral-50 rounded-sm px-4 py-3 text-[12px] text-neutral-600">
+                                Monto exacto: <strong class="tabular-nums">S/ {{ number_format($checkoutTotal, 2) }}</strong> · Envía tu constancia por WhatsApp al mismo número indicando tu N° de pedido.
+                            </div>
+                        </div>
+                    @elseif($checkoutMetodoPago === 'plin')
+                        <div class="text-center">
+                            <span class="inline-block text-[11px] font-bold tracking-widest uppercase text-white px-4 py-1.5 rounded-full" style="background:#00a19a">Pagar con Plin</span>
+                            <img src="{{ asset('images/pagos/qr-plin.png') }}" alt="QR Plin Hatun Wasi" class="w-44 h-44 mx-auto mt-4 border-4 rounded-lg" style="border-color:#00a19a">
+                            <p class="text-sm text-neutral-700 mt-3">Escanea el QR o plinea al</p>
+                            <p class="text-2xl font-bold text-neutral-900 tabular-nums">987 654 321</p>
+                            <p class="text-[12px] text-neutral-500 mt-1">A nombre de <strong>Casas Cerámicos Hatun Wasi E.I.R.L.</strong></p>
+                            <div class="mt-4 bg-neutral-50 rounded-sm px-4 py-3 text-[12px] text-neutral-600">
+                                Monto exacto: <strong class="tabular-nums">S/ {{ number_format($checkoutTotal, 2) }}</strong> · Envía tu constancia por WhatsApp al mismo número indicando tu N° de pedido.
+                            </div>
+                        </div>
+                    @elseif($checkoutMetodoPago === 'tarjeta')
+                        <div class="text-center">
+                            <span class="inline-block text-[11px] font-bold tracking-widest uppercase text-white px-4 py-1.5 rounded-full" style="background:#1a2744">Pago con Tarjeta</span>
+                            <div class="w-20 h-20 mx-auto mt-5 rounded-full flex items-center justify-center" style="background:#1a274415">
+                                <svg class="w-10 h-10" style="color:#1a2744" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+                            </div>
+                            <p class="text-sm text-neutral-700 mt-4 leading-relaxed">Aceptamos <strong>Visa y Mastercard</strong> con nuestro POS inalámbrico:<br>puedes pagar <strong>al recibir tu pedido</strong> o en tienda.</p>
+                            <div class="mt-4 bg-neutral-50 rounded-sm px-4 py-3 text-[12px] text-neutral-600">
+                                Monto a cobrar: <strong class="tabular-nums">S/ {{ number_format($checkoutTotal, 2) }}</strong> · Jr. Sandia 206, Juliaca.
+                            </div>
+                        </div>
+                    @else
+                        <div class="text-center">
+                            <span class="inline-block text-[11px] font-bold tracking-widest uppercase text-white px-4 py-1.5 rounded-full" style="background:#3e5c4c">Pago en Efectivo</span>
+                            <div class="w-20 h-20 mx-auto mt-5 rounded-full flex items-center justify-center" style="background:#3e5c4c15">
+                                <svg class="w-10 h-10" style="color:#3e5c4c" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg>
+                            </div>
+                            <p class="text-sm text-neutral-700 mt-4 leading-relaxed">Paga en efectivo <strong>al recibir tu pedido</strong><br>o visítanos en tienda: Jr. Sandia 206, Juliaca.</p>
+                            <div class="mt-4 bg-neutral-50 rounded-sm px-4 py-3 text-[12px] text-neutral-600">
+                                Monto exacto: <strong class="tabular-nums">S/ {{ number_format($checkoutTotal, 2) }}</strong> · Te contactaremos por WhatsApp para coordinar.
+                            </div>
+                        </div>
+                    @endif
+
+                    <button wire:click="$set('checkoutSuccess', false)"
+                        class="w-full mt-6 py-3.5 bg-neutral-900 hover:bg-[#A98A4B] text-white text-[11px] tracking-widest uppercase font-semibold transition-colors duration-500">
+                        Entendido · Seguir explorando
+                    </button>
+                </div>
+            </div>
         </div>
     @endif
 
@@ -87,9 +156,9 @@
          HERO — cambia según categoría seleccionada
     =================================================================== --}}
     @php
-        $heroImg    = $selectedCategory === 'baño'   ? 'hero-bano.png'
-                    : ($selectedCategory === 'cocina' ? 'hero-cocina.png'
-                    : 'hero.png');
+        $heroImg    = $selectedCategory === 'baño'   ? 'hero-bano.jpg'
+                    : ($selectedCategory === 'cocina' ? 'hero-cocina.jpg'
+                    : 'hero.jpg');
 
         $heroTag    = $selectedCategory === 'baño'   ? 'Espacios de bienestar'
                     : ($selectedCategory === 'cocina' ? 'El corazón del hogar'
@@ -109,7 +178,7 @@
     @endphp
 
     <section class="relative h-[420px] sm:h-[560px] w-full overflow-hidden bg-neutral-900">
-        <img src="{{ asset('images/' . $heroImg) }}" alt="Hatun Wasi" class="absolute inset-0 w-full h-full object-cover object-center opacity-70 transition-opacity duration-700">
+        <img src="{{ asset('images/' . $heroImg) }}" alt="Hatun Wasi" class="hw-slow-zoom absolute inset-0 w-full h-full object-cover object-center opacity-70">
         <div class="absolute inset-0 bg-gradient-to-r from-neutral-900/80 via-neutral-900/40 to-neutral-900/10"></div>
         <div class="relative h-full flex flex-col items-start justify-center px-8 sm:px-16 lg:px-24 text-white max-w-7xl mx-auto w-full">
             <span class="text-[11px] tracking-luxe uppercase text-[#A98A4B] mb-4">{{ $heroTag }}</span>
@@ -130,11 +199,6 @@
         </div>
     </section>
 
-    {{-- Migas de pan --}}
-    <div class="max-w-7xl mx-auto w-full px-6 lg:px-8 py-5 text-[12px] tracking-wide text-neutral-400 uppercase">
-        Inicio <span class="mx-2">/</span> Productos <span class="mx-2">/</span>
-        <span class="text-neutral-700">{{ $selectedCategory === 'todos' ? 'Ambientes' : ($selectedCategory === 'baño' ? 'Baños' : 'Cocinas') }}</span>
-    </div>
 
     {{-- ===================================================================
          BARRA DE BENEFICIOS
@@ -147,7 +211,7 @@
                 </div>
                 <div>
                     <h4 class="font-display text-base text-neutral-900">Diseño personalizado</h4>
-                    <p class="text-xs text-neutral-400 mt-0.5 leading-relaxed">Te ayudamos a crear espacios únicos y funcionales.</p>
+                    <p class="text-xs text-neutral-500 mt-0.5 leading-relaxed">Te ayudamos a crear espacios únicos y funcionales.</p>
                 </div>
             </div>
             <div class="flex items-start gap-4">
@@ -156,7 +220,7 @@
                 </div>
                 <div>
                     <h4 class="font-display text-base text-neutral-900">Entrega rápida</h4>
-                    <p class="text-xs text-neutral-400 mt-0.5 leading-relaxed">Entregas seguras y puntuales en Juliaca y todo el Perú.</p>
+                    <p class="text-xs text-neutral-500 mt-0.5 leading-relaxed">Entregas seguras y puntuales en Juliaca y todo el Perú.</p>
                 </div>
             </div>
             <div class="flex items-start gap-4">
@@ -165,7 +229,7 @@
                 </div>
                 <div>
                     <h4 class="font-display text-base text-neutral-900">Instalación profesional</h4>
-                    <p class="text-xs text-neutral-400 mt-0.5 leading-relaxed">Contamos con expertos para una instalación perfecta.</p>
+                    <p class="text-xs text-neutral-500 mt-0.5 leading-relaxed">Contamos con expertos para una instalación perfecta.</p>
                 </div>
             </div>
             <div class="flex items-start gap-4">
@@ -174,7 +238,7 @@
                 </div>
                 <div>
                     <h4 class="font-display text-base text-neutral-900">Materiales premium</h4>
-                    <p class="text-xs text-neutral-400 mt-0.5 leading-relaxed">Cerámicos, porcelánicos y sanitarios de la más alta calidad.</p>
+                    <p class="text-xs text-neutral-500 mt-0.5 leading-relaxed">Cerámicos, porcelánicos y sanitarios de la más alta calidad.</p>
                 </div>
             </div>
         </div>
@@ -190,20 +254,19 @@
                 <h2 class="font-display text-3xl text-neutral-900">Nuestras Combinaciones</h2>
                 <p class="text-xs tracking-wide text-neutral-400 uppercase mt-1">{{ $combos->total() }} ambientes disponibles</p>
             </div>
-            <span class="hidden sm:block text-xs tracking-wide text-neutral-400 uppercase">Página {{ $combos->currentPage() }} / {{ $combos->lastPage() }}</span>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14">
             @forelse($combos as $combo)
-                <div class="group flex flex-col">
+                <div class="group flex flex-col hw-fade-up" style="animation-delay: {{ ($loop->index % 6) * 80 }}ms">
                     {{-- Imagen --}}
                     <div class="relative aspect-[4/5] w-full overflow-hidden bg-neutral-50 cursor-pointer" wire:click="openDetail({{ $combo->id }})">
                         @if($combo->imagen)
-                            <img src="{{ asset('images/combos/' . $combo->imagen) }}" alt="{{ $combo->nombre }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                            <img src="{{ asset('images/combos/' . $combo->imagen) }}" alt="{{ $combo->nombre }}" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-[1.06] transition-transform duration-[1200ms] ease-out">
                         @else
                             <div class="w-full h-full flex items-center justify-center text-neutral-300 text-6xl font-display">{{ $combo->categoria == 'baño' ? '◍' : '◫' }}</div>
                         @endif
-                        <span class="absolute top-4 left-4 bg-white/90 backdrop-blur text-neutral-700 text-[10px] tracking-widest uppercase px-3 py-1">{{ $combo->descuento }}% Dto.</span>
+                        <span class="absolute top-4 left-4 bg-[#A98A4B] text-white text-[10px] tracking-widest uppercase px-3 py-1">{{ $combo->descuento }}% Dto.</span>
                         <div class="absolute inset-0 bg-neutral-900/0 group-hover:bg-neutral-900/10 transition-colors duration-500 flex items-end justify-center pb-6">
                             <span class="opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500 bg-white text-neutral-800 text-[11px] tracking-widest uppercase px-6 py-2.5">Ver Ambiente</span>
                         </div>
@@ -221,10 +284,10 @@
 
                         <div class="flex items-end justify-between mt-5 pt-4 border-t border-neutral-200">
                             <div>
-                                <div class="text-[11px] text-neutral-400 line-through">S/ {{ number_format($combo->precio_lista, 2) }}</div>
-                                <div class="font-display text-2xl text-neutral-900">S/ {{ number_format($combo->precio_oferta, 2) }}</div>
+                                <div class="text-[11px] text-neutral-400 line-through tabular-nums tracking-wide">S/ {{ number_format($combo->precio_lista, 2) }}</div>
+                                <div class="flex items-baseline gap-1 text-neutral-900"><span class="text-[12px] font-medium text-neutral-500">S/</span><span class="text-xl font-semibold tracking-tight tabular-nums">{{ number_format($combo->precio_oferta, 2) }}</span></div>
                             </div>
-                            <button wire:click="addToCart({{ $combo->id }})" class="border border-neutral-800 text-neutral-800 hover:bg-neutral-900 hover:text-white px-5 py-2.5 text-[11px] tracking-widest uppercase transition-colors duration-300">
+                            <button wire:click="addToCart({{ $combo->id }})" wire:loading.attr="disabled" wire:target="addToCart" class="disabled:opacity-50 border border-neutral-800 text-neutral-800 hover:bg-[#A98A4B] hover:border-[#A98A4B] hover:text-white px-5 py-2.5 text-[11px] tracking-widest uppercase transition-colors duration-300">
                                 Añadir
                             </button>
                         </div>
@@ -297,7 +360,8 @@
             <div>
                 <h4 class="text-[11px] tracking-widest uppercase text-[#A98A4B] mb-4">Contacto</h4>
                 <ul class="space-y-2 text-sm text-neutral-400">
-                    <li>Juliaca, Perú</li>
+                    <li>Casas Cerámicos Hatun Wasi</li>
+                    <li>Jr. Sandia 206, Juliaca, Perú</li>
                     <li>+51 987 654 321</li>
                     <li>hola@watunwasi.pe</li>
                 </ul>
@@ -319,7 +383,7 @@
                         <span class="text-[10px] tracking-widest uppercase text-[#A98A4B]">{{ $selectedCombo->categoria }}</span>
                         <h3 class="font-display text-2xl text-neutral-900 mt-0.5">{{ $selectedCombo->nombre }}</h3>
                     </div>
-                    <button wire:click="closeDetail" class="text-neutral-400 hover:text-neutral-900 transition">
+                    <button wire:click="closeDetail" aria-label="Cerrar detalle del combo" class="text-neutral-400 hover:text-neutral-900 transition">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
                     </button>
                 </div>
@@ -360,7 +424,7 @@
                                                         @if($prod->color) · {{ $prod->color }}@endif
                                                     </p>
                                                 </div>
-                                                <span class="font-display text-base text-neutral-700 flex-shrink-0">S/ {{ number_format($prod->precio, 2) }}</span>
+                                                <span class="text-[14px] font-medium text-neutral-700 flex-shrink-0 tabular-nums">S/ {{ number_format($prod->precio, 2) }}</span>
                                             </div>
                                         @endforeach
                                     </div>
@@ -371,11 +435,11 @@
                                 <div>
                                     <span class="text-[10px] tracking-widest uppercase text-neutral-400 block">Total en Oferta</span>
                                     <div class="flex items-baseline gap-3">
-                                        <span class="font-display text-3xl text-neutral-900">S/ {{ number_format($selectedCombo->precio_oferta, 2) }}</span>
-                                        <span class="text-sm text-neutral-400 line-through">S/ {{ number_format($selectedCombo->precio_lista, 2) }}</span>
+                                        <span class="inline-flex items-baseline gap-1 text-neutral-900"><span class="text-[13px] font-medium text-neutral-500">S/</span><span class="text-[26px] font-semibold tracking-tight tabular-nums">{{ number_format($selectedCombo->precio_oferta, 2) }}</span></span>
+                                        <span class="text-sm text-neutral-400 line-through tabular-nums">S/ {{ number_format($selectedCombo->precio_lista, 2) }}</span>
                                     </div>
                                 </div>
-                                <button wire:click="addToCart({{ $selectedCombo->id }})" class="w-full sm:w-auto px-8 py-3 bg-neutral-900 hover:bg-[#A98A4B] text-white text-[11px] tracking-widest uppercase transition-colors duration-300">
+                                <button wire:click="addToCart({{ $selectedCombo->id }})" wire:loading.attr="disabled" wire:target="addToCart" class="disabled:opacity-50 w-full sm:w-auto px-8 py-3 bg-neutral-900 hover:bg-[#A98A4B] text-white text-[11px] tracking-widest uppercase transition-colors duration-300">
                                     Añadir al Carrito
                                 </button>
                             </div>
@@ -397,7 +461,7 @@
 
                     <div class="px-6 py-5 flex items-center justify-between border-b border-neutral-100">
                         <h3 class="font-display text-2xl text-neutral-900">Tu Selección</h3>
-                        <button wire:click="$set('showCartDrawer', false)" class="text-neutral-400 hover:text-neutral-900 transition">
+                        <button wire:click="$set('showCartDrawer', false)" aria-label="Cerrar carrito" class="text-neutral-400 hover:text-neutral-900 transition">
                             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
                         </button>
                     </div>
@@ -407,7 +471,7 @@
                             <div class="flex gap-4 pb-5 border-b border-neutral-100 relative">
                                 <div class="w-20 h-24 bg-neutral-50 flex-shrink-0 overflow-hidden">
                                     @if($item['combo']->imagen)
-                                        <img src="{{ asset('images/combos/' . $item['combo']->imagen) }}" class="w-full h-full object-cover">
+                                        <img src="{{ asset('images/combos/' . $item['combo']->imagen) }}" alt="{{ $item['combo']->nombre }}" loading="lazy" decoding="async" class="w-full h-full object-cover">
                                     @endif
                                 </div>
                                 <div class="flex-1 pr-6">
@@ -415,14 +479,14 @@
                                     <h4 class="font-display text-base text-neutral-900 leading-tight mt-0.5">{{ $item['combo']->nombre }}</h4>
                                     <div class="flex items-center justify-between mt-3">
                                         <div class="flex items-center border border-neutral-200">
-                                            <button wire:click="updateQuantity({{ $item['combo']->id }}, {{ $item['quantity'] - 1 }})" class="px-2.5 py-1 text-neutral-500 hover:text-neutral-900">−</button>
+                                            <button wire:click="updateQuantity({{ $item['combo']->id }}, {{ $item['quantity'] - 1 }})" aria-label="Disminuir cantidad" class="px-3 py-2 text-neutral-500 hover:text-neutral-900">−</button>
                                             <span class="px-3 py-1 text-sm text-neutral-800">{{ $item['quantity'] }}</span>
-                                            <button wire:click="updateQuantity({{ $item['combo']->id }}, {{ $item['quantity'] + 1 }})" class="px-2.5 py-1 text-neutral-500 hover:text-neutral-900">+</button>
+                                            <button wire:click="updateQuantity({{ $item['combo']->id }}, {{ $item['quantity'] + 1 }})" aria-label="Aumentar cantidad" class="px-3 py-2 text-neutral-500 hover:text-neutral-900">+</button>
                                         </div>
-                                        <span class="font-display text-lg text-neutral-900">S/ {{ number_format($item['subtotal'], 2) }}</span>
+                                        <span class="text-[15px] font-semibold text-neutral-900 tabular-nums">S/ {{ number_format($item['subtotal'], 2) }}</span>
                                     </div>
                                 </div>
-                                <button wire:click="removeFromCart({{ $item['combo']->id }})" class="absolute top-0 right-0 text-neutral-300 hover:text-neutral-700 transition">
+                                <button wire:click="removeFromCart({{ $item['combo']->id }})" aria-label="Quitar del carrito" class="absolute top-0 right-0 p-1.5 -m-1.5 text-neutral-300 hover:text-neutral-700 transition">
                                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
                                 </button>
                             </div>
@@ -438,7 +502,7 @@
                         <div class="border-t border-neutral-100 px-6 py-6 space-y-4">
                             <div class="flex items-center justify-between">
                                 <span class="text-xs tracking-widest uppercase text-neutral-500">Total</span>
-                                <span class="font-display text-3xl text-neutral-900">S/ {{ number_format($cartTotal, 2) }}</span>
+                                <span class="inline-flex items-baseline gap-1 text-neutral-900"><span class="text-[13px] font-medium text-neutral-500">S/</span><span class="text-[26px] font-semibold tracking-tight tabular-nums">{{ number_format($cartTotal, 2) }}</span></span>
                             </div>
                             <button wire:click="openCheckoutForm" class="w-full py-4 bg-neutral-900 hover:bg-[#A98A4B] text-white text-[11px] tracking-widest uppercase transition-colors duration-300">
                                 Finalizar Pedido
@@ -458,54 +522,103 @@
             <div class="bg-white max-w-lg w-full shadow-2xl">
                 <div class="px-6 py-5 flex items-center justify-between border-b border-neutral-100">
                     <h3 class="font-display text-2xl text-neutral-900">Confirmar Pedido</h3>
-                    <button wire:click="$set('showCheckoutForm', false)" class="text-neutral-400 hover:text-neutral-900 transition">
+                    <button wire:click="$set('showCheckoutForm', false)" aria-label="Cerrar formulario" class="text-neutral-400 hover:text-neutral-900 transition">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
                     </button>
                 </div>
 
-                <div class="p-6 space-y-6">
-                    <div class="bg-neutral-50 p-5">
-                        <h4 class="text-[10px] tracking-widest uppercase text-neutral-400 mb-3">Resumen</h4>
-                        <div class="space-y-2 text-sm text-neutral-600">
+                <div class="p-6 space-y-6 max-h-[80vh] overflow-y-auto">
+                    {{-- Resumen del pedido: numeración alineada, sin saltos de línea --}}
+                    <div class="bg-neutral-50 p-5 rounded-sm">
+                        <h4 class="text-[11px] tracking-widest uppercase text-neutral-500 font-medium mb-3">Resumen del pedido</h4>
+                        <div class="divide-y divide-neutral-200/70">
                             @foreach($cartItems as $item)
-                                <div class="flex justify-between">
-                                    <span class="truncate pr-3">{{ $item['combo']->nombre }} × {{ $item['quantity'] }}</span>
-                                    <span class="font-display text-neutral-900">S/ {{ number_format($item['subtotal'], 2) }}</span>
+                                <div class="flex items-center justify-between gap-4 py-2.5">
+                                    <div class="min-w-0">
+                                        <p class="text-[13px] text-neutral-800 font-medium truncate">{{ $item['combo']->nombre }}</p>
+                                        <p class="text-[11px] text-neutral-400">{{ $item['quantity'] }} × S/ {{ number_format($item['combo']->precio_oferta, 2) }}</p>
+                                    </div>
+                                    <span class="flex-shrink-0 text-[13px] font-semibold text-neutral-900 tabular-nums">S/ {{ number_format($item['subtotal'], 2) }}</span>
                                 </div>
                             @endforeach
                         </div>
-                        <div class="border-t border-neutral-200 mt-4 pt-4 flex justify-between items-baseline">
-                            <span class="text-xs tracking-widest uppercase text-neutral-500">Total</span>
-                            <span class="font-display text-2xl text-neutral-900">S/ {{ number_format($cartTotal, 2) }}</span>
+                        <div class="border-t-2 border-neutral-300 mt-2 pt-3 flex justify-between items-center">
+                            <span class="text-[11px] tracking-widest uppercase text-neutral-600 font-semibold">Total a pagar</span>
+                            <span class="text-xl font-bold text-neutral-900 tabular-nums">S/ {{ number_format($cartTotal, 2) }}</span>
                         </div>
                     </div>
 
                     <form wire:submit.prevent="confirmCheckout" class="space-y-5">
+                        {{-- Datos del cliente --}}
                         <div>
-                            <label class="block text-[10px] tracking-widest uppercase text-neutral-500 mb-2">Nombre Completo *</label>
-                            <input type="text" wire:model="customerName" placeholder="Juan Pérez García"
-                                class="w-full border-0 border-b border-neutral-300 bg-transparent px-1 py-2 text-sm text-neutral-800 focus:outline-none focus:border-neutral-900 transition {{ $errors->has('customerName') ? 'border-red-400' : '' }}">
-                            @error('customerName') <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span> @enderror
+                            <h4 class="text-[11px] tracking-widest uppercase text-neutral-500 font-medium mb-3">Tus datos</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-[12px] font-medium text-neutral-700 mb-1.5">Nombre completo <span class="text-[#A98A4B]">*</span></label>
+                                    <input type="text" wire:model="customerName" placeholder="Juan Pérez García"
+                                        class="w-full border border-neutral-300 rounded-sm bg-white px-3 py-2.5 text-sm text-neutral-800 placeholder-neutral-400 focus:outline-none focus:border-[#A98A4B] focus:ring-1 focus:ring-[#A98A4B] transition {{ $errors->has('customerName') ? 'border-red-400' : '' }}">
+                                    @error('customerName') <span role="alert" class="text-xs text-red-500 mt-1 block">{{ $message }}</span> @enderror
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-[12px] font-medium text-neutral-700 mb-1.5">Teléfono / WhatsApp <span class="text-[#A98A4B]">*</span></label>
+                                        <input type="tel" inputmode="numeric" wire:model="customerPhone" placeholder="987 654 321"
+                                            class="w-full border border-neutral-300 rounded-sm bg-white px-3 py-2.5 text-sm text-neutral-800 placeholder-neutral-400 focus:outline-none focus:border-[#A98A4B] focus:ring-1 focus:ring-[#A98A4B] transition {{ $errors->has('customerPhone') ? 'border-red-400' : '' }}">
+                                        @error('customerPhone') <span role="alert" class="text-xs text-red-500 mt-1 block">{{ $message }}</span> @enderror
+                                    </div>
+                                    <div>
+                                        <label class="block text-[12px] font-medium text-neutral-700 mb-1.5">Email <span class="text-neutral-400 font-normal">(opcional)</span></label>
+                                        <input type="email" wire:model="customerEmail" placeholder="correo@ejemplo.com"
+                                            class="w-full border border-neutral-300 rounded-sm bg-white px-3 py-2.5 text-sm text-neutral-800 placeholder-neutral-400 focus:outline-none focus:border-[#A98A4B] focus:ring-1 focus:ring-[#A98A4B] transition {{ $errors->has('customerEmail') ? 'border-red-400' : '' }}">
+                                        @error('customerEmail') <span role="alert" class="text-xs text-red-500 mt-1 block">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+                        {{-- Método de pago --}}
                         <div>
-                            <label class="block text-[10px] tracking-widest uppercase text-neutral-500 mb-2">Teléfono / WhatsApp *</label>
-                            <input type="text" wire:model="customerPhone" placeholder="987 654 321"
-                                class="w-full border-0 border-b border-neutral-300 bg-transparent px-1 py-2 text-sm text-neutral-800 focus:outline-none focus:border-neutral-900 transition {{ $errors->has('customerPhone') ? 'border-red-400' : '' }}">
-                            @error('customerPhone') <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span> @enderror
-                        </div>
-                        <div>
-                            <label class="block text-[10px] tracking-widest uppercase text-neutral-500 mb-2">Email (opcional)</label>
-                            <input type="email" wire:model="customerEmail" placeholder="correo@ejemplo.com"
-                                class="w-full border-0 border-b border-neutral-300 bg-transparent px-1 py-2 text-sm text-neutral-800 focus:outline-none focus:border-neutral-900 transition {{ $errors->has('customerEmail') ? 'border-red-400' : '' }}">
-                            @error('customerEmail') <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span> @enderror
+                            <h4 class="text-[11px] tracking-widest uppercase text-neutral-500 font-medium mb-3">Método de pago</h4>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                                @foreach([
+                                    ['yape',     'Yape',     '#742284'],
+                                    ['plin',     'Plin',     '#00a19a'],
+                                    ['tarjeta',  'Tarjeta',  '#1a2744'],
+                                    ['efectivo', 'Efectivo', '#3e5c4c'],
+                                ] as [$valor, $etiqueta, $colorPago])
+                                    <label class="relative flex flex-col items-center gap-1.5 border rounded-sm py-3 px-2 cursor-pointer transition-all duration-200
+                                        {{ $paymentMethod === $valor ? 'border-[#A98A4B] bg-[#A98A4B]/5 shadow-sm' : 'border-neutral-200 hover:border-neutral-400' }}">
+                                        <input type="radio" wire:model.live="paymentMethod" value="{{ $valor }}" class="sr-only">
+                                        <span class="w-8 h-8 rounded-full flex items-center justify-center text-white text-[11px] font-bold"
+                                              style="background: {{ $colorPago }}">
+                                            {{ strtoupper(substr($etiqueta, 0, 1)) }}
+                                        </span>
+                                        <span class="text-[12px] font-medium {{ $paymentMethod === $valor ? 'text-neutral-900' : 'text-neutral-500' }}">{{ $etiqueta }}</span>
+                                        @if($paymentMethod === $valor)
+                                            <span class="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-[#A98A4B] text-white flex items-center justify-center">
+                                                <svg class="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                            </span>
+                                        @endif
+                                    </label>
+                                @endforeach
+                            </div>
+                            <p class="text-[11px] text-neutral-400 mt-2">El pago se coordina al confirmar tu pedido; te contactaremos por WhatsApp.</p>
+                            @error('paymentMethod') <span role="alert" class="text-xs text-red-500 mt-1 block">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="flex gap-3 pt-2">
                             <button type="button" wire:click="$set('showCheckoutForm', false)" class="flex-1 py-3 border border-neutral-300 text-neutral-600 hover:border-neutral-900 hover:text-neutral-900 text-[11px] tracking-widest uppercase transition">
                                 Cancelar
                             </button>
-                            <button type="submit" class="flex-1 py-3 bg-neutral-900 hover:bg-[#A98A4B] text-white text-[11px] tracking-widest uppercase transition-colors duration-300">
-                                Confirmar
+                            <button type="submit"
+                                    wire:loading.attr="disabled"
+                                    wire:target="confirmCheckout"
+                                    class="flex-1 py-3 bg-neutral-900 hover:bg-[#A98A4B] text-white text-[11px] tracking-widest uppercase transition-colors duration-300 disabled:opacity-60 disabled:cursor-wait">
+                                <span wire:loading.remove wire:target="confirmCheckout">Confirmar</span>
+                                <span wire:loading wire:target="confirmCheckout" class="inline-flex items-center gap-2">
+                                    <svg class="animate-spin w-3.5 h-3.5" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/></svg>
+                                    Procesando…
+                                </span>
                             </button>
                         </div>
                     </form>

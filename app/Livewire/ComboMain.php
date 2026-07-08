@@ -13,6 +13,7 @@ class ComboMain extends Component
     use WithPagination, WithFileUploads;
 
     public string $search = '';
+    public string $productSearch = '';
     public ?int  $comboId = null;
 
     public string $nombre       = '';
@@ -59,11 +60,30 @@ class ComboMain extends Component
             ->latest()
             ->paginate(10);
 
-        $allProducts = Product::orderBy('nombre')->get();
+        // Solo productos del módulo Combos (baño/cocina); los catálogos de
+        // otros equipos (revestimientos, accesorios, etc.) no se asignan aquí.
+        // Los de la categoría del combo aparecen primero, con buscador en vivo.
+        $allProducts = Product::whereIn('categoria', ['baño', 'cocina'])
+            ->when($this->productSearch, function ($q) {
+                $q->where(function ($inner) {
+                    $inner->where('nombre', 'LIKE', "%{$this->productSearch}%")
+                          ->orWhere('codigo', 'LIKE', "%{$this->productSearch}%")
+                          ->orWhere('marca', 'LIKE', "%{$this->productSearch}%");
+                });
+            })
+            ->orderByRaw('CASE WHEN categoria = ? THEN 0 ELSE 1 END', [$this->categoria])
+            ->orderBy('nombre')
+            ->get();
+
+        // Suma de precios de los productos marcados (para sugerir precio de lista)
+        $sumaSeleccionados = empty($this->selectedProducts)
+            ? 0
+            : Product::whereIn('id', $this->selectedProducts)->sum('precio');
 
         return view('livewire.combo-main', [
-            'combos'      => $combos,
-            'allProducts' => $allProducts,
+            'combos'            => $combos,
+            'allProducts'       => $allProducts,
+            'sumaSeleccionados' => $sumaSeleccionados,
         ])->layout('layouts.app');
     }
 
@@ -99,9 +119,30 @@ class ComboMain extends Component
         $this->showFormModal = true;
     }
 
+    /**
+     * Toma la suma de los productos seleccionados como precio de lista
+     * y recalcula el descuento automáticamente.
+     */
+    public function usarSumaComoPrecioLista(): void
+    {
+        if (empty($this->selectedProducts)) return;
+
+        $this->precio_lista = round(
+            Product::whereIn('id', $this->selectedProducts)->sum('precio'), 2
+        );
+        $this->calculateDiscount();
+    }
+
     public function save(): void
     {
         $this->validate();
+
+        // Un combo debe tener al menos un producto asignado
+        if (empty($this->selectedProducts)) {
+            $this->addError('selectedProducts', 'Selecciona al menos un producto para el combo.');
+            $this->dispatch('notify', ['message' => 'El combo necesita al menos un producto.', 'type' => 'error']);
+            return;
+        }
 
         $imagenNombre = $this->imagenActual;
 
@@ -181,7 +222,7 @@ class ComboMain extends Component
         $this->reset([
             'comboId', 'nombre', 'descripcion', 'precio_oferta', 'precio_lista',
             'descuento', 'categoria', 'imagenActual', 'foto',
-            'selectedProducts', 'productRoles',
+            'selectedProducts', 'productRoles', 'productSearch',
         ]);
         $this->resetErrorBag();
     }

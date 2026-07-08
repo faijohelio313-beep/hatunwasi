@@ -16,6 +16,18 @@
                         {{ __('Dashboard') }}
                     </flux:sidebar.item>
 
+                    <flux:sidebar.item icon="shopping-bag" :href="route('admin.combos')" :current="request()->routeIs('admin.combos')" wire:navigate>
+                        {{ __('Combos') }}
+                    </flux:sidebar.item>
+
+                    <flux:sidebar.item icon="cube" :href="route('admin.productos')" :current="request()->routeIs('admin.productos')" wire:navigate>
+                        {{ __('Productos') }}
+                    </flux:sidebar.item>
+
+                    <flux:sidebar.item icon="clipboard-document-list" :href="route('admin.orders')" :current="request()->routeIs('admin.orders')" wire:navigate>
+                        {{ __('Pedidos') }}
+                    </flux:sidebar.item>
+
                 </flux:sidebar.group>
             </flux:sidebar.nav>
 
@@ -35,7 +47,7 @@
                 <x-desktop-user-menu class="hidden lg:block" :name="auth()->user()->name" />
             @else
                 <div class="hidden lg:block p-4">
-                    <a href="{{ route('login') }}" class="block text-center py-2 bg-orange-600 text-white font-bold rounded text-xs uppercase hover:bg-orange-700 transition">
+                    <a href="{{ route('login') }}" class="block text-center py-2 bg-[#A98A4B] text-white font-bold rounded text-xs uppercase hover:bg-[#8a6f3a] transition">
                         Iniciar Sesión
                     </a>
                 </div>
@@ -97,7 +109,7 @@
                     </flux:menu>
                 </flux:dropdown>
             @else
-                <a href="{{ route('login') }}" class="text-xs uppercase font-extrabold text-orange-600 hover:text-orange-700 px-3 py-1.5 border border-orange-200 rounded">
+                <a href="{{ route('login') }}" class="text-xs uppercase font-extrabold text-[#A98A4B] hover:text-[#8a6f3a] px-3 py-1.5 border border-[#A98A4B]/25 rounded">
                     Login
                 </a>
             @endauth

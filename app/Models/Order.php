@@ -11,9 +11,21 @@ class Order extends Model
         'customer_phone',
         'customer_email',
         'total',
+        'metodo_pago',
         'status',
         'notas',
     ];
+
+    public function getMetodoPagoLabelAttribute(): string
+    {
+        return match ($this->metodo_pago) {
+            'yape'     => 'Yape',
+            'plin'     => 'Plin',
+            'tarjeta'  => 'Tarjeta',
+            'efectivo' => 'Efectivo',
+            default    => ucfirst($this->metodo_pago ?? 'Efectivo'),
+        };
+    }
 
     public function items()
     {

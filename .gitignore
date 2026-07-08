@@ -9,6 +9,7 @@
 /vendor
 .env
 .env.backup
+.env.backup_local
 .env.production
 .phpactor.json
 .phpunit.result.cache
@@ -24,3 +25,5 @@ yarn-error.log
 /.zed
 .claude/
 *.bak
+*.backup_local
+HatunWasi/

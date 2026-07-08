@@ -1,7 +1,11 @@
 <?php
 
-test('returns a successful response', function () {
-    $response = $this->get(route('home'));
+test('la página principal redirige a la tienda', function () {
+    $this->get(route('home'))
+        ->assertRedirect(route('store'));
+});
 
-    $response->assertOk();
+test('la tienda pública responde correctamente', function () {
+    $this->get(route('store'))
+        ->assertOk();
 });

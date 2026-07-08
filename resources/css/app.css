@@ -65,3 +65,86 @@ select:focus[data-flux-control] {
     @apply size-4;
 } */
 
+/* =====================================================================
+   Toques premium globales — identidad Hatun Wasi
+   ===================================================================== */
+
+/* Desplazamiento suave en anclas */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Selección de texto en dorado de marca */
+::selection {
+    background: #A98A4B;
+    color: #fff;
+}
+
+/* Scrollbar fino y elegante (Chrome/Edge) */
+::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #c9bda5;
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #A98A4B;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+.dark ::-webkit-scrollbar-thumb {
+    background: #52525b;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+/* Animaciones reutilizables de entrada (patrón casas de lujo) */
+@keyframes hw-fade-up {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: none; }
+}
+@keyframes hw-slow-zoom {
+    from { transform: scale(1); }
+    to   { transform: scale(1.08); }
+}
+.hw-fade-up { animation: hw-fade-up .8s cubic-bezier(.25,.8,.25,1) both; }
+.hw-slow-zoom { animation: hw-slow-zoom 20s ease-out forwards; }
+
+/* Accesibilidad: anillo de foco visible para navegación con teclado
+   (auditoría UI/UX Pro Max — regla "Focus States", severidad alta) */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+label:focus-visible {
+    outline: 2px solid #A98A4B;
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* Accesibilidad: respetar la preferencia de menos movimiento del usuario
+   (regla "Reduced Motion", severidad alta) */
+@media (prefers-reduced-motion: reduce) {
+    .hw-fade-up,
+    .hw-slow-zoom,
+    .hero-img,
+    .card-luxe,
+    .hw-auth-zoom {
+        animation: none !important;
+    }
+    *,
+    ::before,
+    ::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+

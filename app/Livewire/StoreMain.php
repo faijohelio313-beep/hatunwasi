@@ -2,8 +2,10 @@
 
 namespace App\Livewire;
 
+use App\Mail\OrderConfirmation;
 use App\Models\Combo;
 use App\Models\Order;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -22,10 +24,15 @@ class StoreMain extends Component
     public bool $checkoutSuccess   = false;
     public ?int $checkoutOrderId   = null;
 
+    // Datos del pedido recién confirmado, para las instrucciones de pago
+    public ?string $checkoutMetodoPago = null;
+    public float   $checkoutTotal      = 0.0;
+
     // Datos del cliente para el pedido
     public string $customerName  = '';
     public string $customerPhone = '';
     public string $customerEmail = '';
+    public string $paymentMethod = 'yape';
 
     public function mount(): void
     {
@@ -158,6 +165,7 @@ class StoreMain extends Component
             'customerName'  => 'required|string|min:3|max:100',
             'customerPhone' => 'required|string|min:6|max:20',
             'customerEmail' => 'nullable|email|max:150',
+            'paymentMethod' => 'required|in:yape,plin,tarjeta,efectivo',
         ]);
 
         if (empty($this->cart)) return;
@@ -165,30 +173,83 @@ class StoreMain extends Component
         $items = $this->getBatchedCartItems();
         $total = collect($items)->sum('subtotal');
 
-        $order = Order::create([
-            'customer_name'  => $this->customerName,
-            'customer_phone' => $this->customerPhone,
-            'customer_email' => $this->customerEmail ?: null,
-            'total'          => $total,
-            'status'         => 'pendiente',
-        ]);
+        // Transacción con bloqueo pesimista (lockForUpdate): bajo alta
+        // concurrencia, dos compradores simultáneos NO pueden pasar la
+        // validación con el mismo stock — el segundo espera al primero
+        // y ve el stock ya descontado. Evita la sobreventa.
+        try {
+            $order = \DB::transaction(function () use ($items, $total) {
+                // Bloquear las filas de productos involucradas hasta el commit
+                $productIds = collect($items)
+                    ->flatMap(fn($item) => $item['combo']->products->pluck('id'))
+                    ->unique()->values();
 
-        foreach ($items as $item) {
-            $order->items()->create([
-                'combo_id'       => $item['combo']->id,
-                'combo_nombre'   => $item['combo']->nombre,
-                'cantidad'       => $item['quantity'],
-                'precio_unitario'=> $item['combo']->precio_oferta,
-                'subtotal'       => $item['subtotal'],
-            ]);
+                $stocks = \App\Models\Product::whereIn('id', $productIds)
+                    ->lockForUpdate()
+                    ->get()
+                    ->keyBy('id');
+
+                // Validar stock DENTRO del bloqueo, sobre datos frescos
+                foreach ($items as $item) {
+                    foreach ($item['combo']->products as $prod) {
+                        $actual = $stocks[$prod->id]->cantidad;
+                        if ($actual < $item['quantity']) {
+                            throw new \RuntimeException(
+                                "Stock insuficiente para \"{$item['combo']->nombre}\" ({$prod->nombre}: quedan {$actual})."
+                            );
+                        }
+                    }
+                }
+
+                $order = Order::create([
+                    'customer_name'  => $this->customerName,
+                    'customer_phone' => $this->customerPhone,
+                    'customer_email' => $this->customerEmail ?: null,
+                    'total'          => $total,
+                    'metodo_pago'    => $this->paymentMethod,
+                    'status'         => 'pendiente',
+                ]);
+
+                foreach ($items as $item) {
+                    $order->items()->create([
+                        'combo_id'       => $item['combo']->id,
+                        'combo_nombre'   => $item['combo']->nombre,
+                        'cantidad'       => $item['quantity'],
+                        'precio_unitario'=> $item['combo']->precio_oferta,
+                        'subtotal'       => $item['subtotal'],
+                    ]);
+
+                    // Descontar stock dentro de la misma transacción
+                    foreach ($item['combo']->products as $prod) {
+                        $stocks[$prod->id]->decrement('cantidad', $item['quantity']);
+                    }
+                }
+
+                return $order;
+            });
+        } catch (\RuntimeException $e) {
+            $this->dispatch('notify', ['message' => $e->getMessage(), 'type' => 'error']);
+            $this->addError('customerName', $e->getMessage());
+            return;
+        }
+
+        // Correo de confirmación al cliente (si dejó email); no bloquea el pedido si falla
+        if ($order->customer_email) {
+            try {
+                Mail::to($order->customer_email)->send(new OrderConfirmation($order));
+            } catch (\Throwable $e) {
+                report($e);
+            }
         }
 
         $this->clearCart();
-        $this->showCheckoutForm = false;
-        $this->checkoutSuccess  = true;
-        $this->checkoutOrderId  = $order->id;
+        $this->showCheckoutForm    = false;
+        $this->checkoutSuccess     = true;
+        $this->checkoutOrderId     = $order->id;
+        $this->checkoutMetodoPago  = $order->metodo_pago;
+        $this->checkoutTotal       = (float) $order->total;
 
-        $this->reset(['customerName', 'customerPhone', 'customerEmail']);
+        $this->reset(['customerName', 'customerPhone', 'customerEmail', 'paymentMethod']);
     }
 
     // -------------------------------------------------------------------------

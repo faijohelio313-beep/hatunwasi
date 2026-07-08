@@ -18,11 +18,13 @@ class DatabaseSeeder extends Seeder
         // Crea 10 usuarios aleatorios usando el Factory de User
         User::factory(10)->create();
 
-        // Crea un usuario específico con datos manuales
+        // Usuario administrador: las credenciales se leen del .env
+        // (ADMIN_NAME, ADMIN_EMAIL, ADMIN_PASSWORD) para no exponerlas
+        // en el código fuente ni en el repositorio.
         User::factory()->create([
-            'name' => 'helio paul faijo calisaya',
-            'email' => 'faijohelio313@gmail.com',
-            'password' => bcrypt("helio12325"),
+            'name'     => env('ADMIN_NAME', 'Administrador'),
+            'email'    => env('ADMIN_EMAIL', 'admin@hatunwasi.test'),
+            'password' => bcrypt(env('ADMIN_PASSWORD', 'cambiar-al-instalar')),
         ]);
 
         // DESACTIVADO: generaba 3000 productos de prueba (Faker) con nombres sin sentido
@@ -32,6 +34,10 @@ class DatabaseSeeder extends Seeder
 
         // Sembrar combos y productos del catálogo real
         $this->call(AmbientesSeeder::class);
+
+        // Catálogo completo de la empresa (revestimientos, accesorios,
+        // sanitarios, cerámicos y componentes) — módulos de otros equipos
+        $this->call(CatalogoEmpresaSeeder::class);
 
 
     }
